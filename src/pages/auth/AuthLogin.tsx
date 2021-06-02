@@ -1,22 +1,45 @@
 import { Box, Button, Grid, TextField } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
+import validator from "validator";
+
+const rules = {
+  username: { min: 3, max: 16 },
+};
 
 export default function AuthLogin() {
+  const [loginForm, setLoginForm] = useState({
+    username: { value: "", error: false, helperText: "" },
+    password: { value: "", error: false, helperText: "" },
+  });
+  const onFormUsernameChange = (event: any) => {
+    console.log(event.target.value);
+    if (!validator.isByteLength(event.target.value, { min: 3, max: 16 })) {
+      setLoginForm({ ...loginForm, username: { value: "", error: true, helperText: "用户名长度在 3 到 16 位之间" } });
+    } else {
+      setLoginForm({ ...loginForm, username: { value: event.target.value, error: false, helperText: "" } });
+    }
+  };
+  const onClickLoginButton = (event: any) => {
+    console.log(event.target);
+    event.preventDefault();
+  };
   return (
     <Box mt={10}>
-      <form>
-        <TextField id="username" label="用户名" fullWidth required />
-        <Box mt={2} />
+      <form onSubmit={onClickLoginButton}>
         <TextField
-          id="password"
-          type="password"
-          label="密码"
+          id="username"
+          label="用户名"
+          onChange={onFormUsernameChange}
+          error={loginForm.username.error}
+          helperText={loginForm.username.helperText}
           fullWidth
           required
         />
         <Box mt={2} />
+        <TextField id="password" type="password" label="密码" fullWidth required />
+        <Box mt={2} />
         <Grid container direction="row" justifyContent="center">
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" type="submit">
             登录
           </Button>
         </Grid>
