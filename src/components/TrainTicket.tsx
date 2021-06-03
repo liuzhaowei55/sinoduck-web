@@ -1,13 +1,14 @@
 import { Box, Card, CardContent, Grid, Typography } from "@material-ui/core";
 import TrendingFlatIcon from "@material-ui/icons/TrendingFlat";
 import React from "react";
+import { TrainTicket as TrainTicketType } from "../index";
 
-export default function TrainTicket() {
+export default function TrainTicket(trainTicket: TrainTicketType) {
   return (
-    <Box>
+    <Box mt={1} mb={1}>
       <Card variant="outlined">
         <CardContent>
-          <Typography>乘车日期：2020-01-01</Typography>
+          <Typography>乘车日期：{trainTicket.train_date}</Typography>
           <Grid container direction="row" spacing={1}>
             <Grid item xs>
               <Typography align="left">深圳</Typography>

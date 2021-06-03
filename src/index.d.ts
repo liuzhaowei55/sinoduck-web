@@ -7,7 +7,7 @@ interface Train {
   to_station_name: string;
   station_list: Array<Station>;
 }
-interface Station {
+export interface Station {
   station_telecode: string;
   station_name: string;
   // 城市编码
@@ -20,6 +20,17 @@ interface Station {
   stopover_time?: string;
   // 车站在该线路的编号
   station_no?: string;
+}
+
+export interface TrainTicket {
+  train_date: string;
+  station_train_code: string;
+  from_station_name: string;
+  from_station_date: string;
+  from_station_time: string;
+  to_station_name: string;
+  to_station_date: string;
+  to_station_time: string;
 }
 
 export enum SeatType {
