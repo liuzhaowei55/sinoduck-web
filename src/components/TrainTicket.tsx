@@ -10,7 +10,7 @@ import { saveAs } from "file-saver";
 export default function TrainTicket(trainTicket: TrainTicketType) {
   const boxRef = createRef();
   const download = () => {
-    html2canvas(boxRef.current).then((canvas) => {
+    html2canvas(boxRef.current, {}).then((canvas) => {
       const name =
         trainTicket.from_station_date + "-" + trainTicket.from_station_name + "-" + trainTicket.to_station_name;
       saveAs(canvas.toDataURL("image/png"), `${name}.png`);
