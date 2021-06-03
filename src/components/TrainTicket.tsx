@@ -1,8 +1,9 @@
-import { Box, Card, CardContent, Grid, Typography } from "@material-ui/core";
+import { Box, Card, CardContent, CardHeader, Grid, Typography, IconButton } from "@material-ui/core";
 import TrendingFlatIcon from "@material-ui/icons/TrendingFlat";
 import React from "react";
 import { TrainTicket as TrainTicketType } from "../index";
 import { differenceInDays, parse } from "date-fns";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 export default function TrainTicket(trainTicket: TrainTicketType) {
   const DurationDay = () => {
@@ -18,8 +19,17 @@ export default function TrainTicket(trainTicket: TrainTicketType) {
   return (
     <Box mt={1} mb={1}>
       <Card variant="outlined">
+        <CardHeader
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title={`乘车日期：${trainTicket.train_date}`}
+        >
+          <Typography></Typography>
+        </CardHeader>
         <CardContent>
-          <Typography>乘车日期：{trainTicket.train_date}</Typography>
           <Grid container direction="row" spacing={1}>
             <Grid item xs>
               <Typography align="left">深圳</Typography>
