@@ -3,7 +3,6 @@ import TrendingFlatIcon from "@material-ui/icons/TrendingFlat";
 import React, { createRef } from "react";
 import { TrainTicket as TrainTicketType } from "../index";
 import { differenceInDays, parse } from "date-fns";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import html2canvas from "html2canvas";
 import { saveAs } from "file-saver";
