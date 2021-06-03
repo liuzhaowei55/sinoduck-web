@@ -11,6 +11,7 @@ import Drawer from "@material-ui/core/Drawer";
 import Index from "./pages/Index";
 import DrawerOptions from "./layouts/DrawerOptions";
 import AuthLogin from "./pages/auth/AuthLogin";
+import Train from "./pages/Train";
 
 export default function App() {
   const [drawerState, setDrawerState] = useState(false);
@@ -24,13 +25,7 @@ export default function App() {
     <Box>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-            onClick={openDrawer}
-          >
+          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={openDrawer}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -46,6 +41,7 @@ export default function App() {
       </Drawer>
       <Switch>
         <Route exact path="/login" component={AuthLogin} />
+        <Route exact path="/train" component={Train} />
         <Route exact path="/" component={Index} />
       </Switch>
     </Box>
