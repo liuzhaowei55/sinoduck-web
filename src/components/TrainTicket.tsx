@@ -1,11 +1,22 @@
 import { Box, Card, CardContent, CardHeader, Grid, Typography, IconButton } from "@material-ui/core";
 import TrendingFlatIcon from "@material-ui/icons/TrendingFlat";
-import React from "react";
+import React, { createRef } from "react";
 import { TrainTicket as TrainTicketType } from "../index";
 import { differenceInDays, parse } from "date-fns";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import GetAppIcon from "@material-ui/icons/GetApp";
+import html2canvas from "html2canvas";
+import { saveAs } from "file-saver";
 
 export default function TrainTicket(trainTicket: TrainTicketType) {
+  const boxRef = createRef();
+  const download = () => {
+    html2canvas(boxRef.current).then((canvas) => {
+      const name =
+        trainTicket.from_station_date + "-" + trainTicket.from_station_name + "-" + trainTicket.to_station_name;
+      saveAs(canvas.toDataURL("image/png"), `${name}.png`);
+    });
+  };
   const DurationDay = () => {
     const fromDate = parse(trainTicket.from_station_date, "yyyy-MM-dd", new Date());
     const toDate = parse(trainTicket.to_station_date, "yyyy-MM-dd", new Date());
@@ -17,18 +28,16 @@ export default function TrainTicket(trainTicket: TrainTicketType) {
     return <span />;
   };
   return (
-    <Box mt={1} mb={1}>
+    <Box mt={1} mb={1} ref={boxRef}>
       <Card variant="outlined">
         <CardHeader
           action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
+            <IconButton aria-label="settings" onClick={download}>
+              <GetAppIcon />
             </IconButton>
           }
           title={`乘车日期：${trainTicket.train_date}`}
-        >
-          <Typography></Typography>
-        </CardHeader>
+        />
         <CardContent>
           <Grid container direction="row" spacing={1}>
             <Grid item xs>
