@@ -11,7 +11,7 @@ export default function Train() {
     from_station_date: "2020-01-01",
     from_station_time: "11:00",
     to_station_name: "南阳",
-    to_station_date: "2020-01-02",
+    to_station_date: "2020-01-01",
     to_station_time: "15:00",
   };
   return (

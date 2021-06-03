@@ -2,8 +2,19 @@ import { Box, Card, CardContent, Grid, Typography } from "@material-ui/core";
 import TrendingFlatIcon from "@material-ui/icons/TrendingFlat";
 import React from "react";
 import { TrainTicket as TrainTicketType } from "../index";
+import { differenceInDays, parse } from "date-fns";
 
 export default function TrainTicket(trainTicket: TrainTicketType) {
+  const DurationDay = () => {
+    const fromDate = parse(trainTicket.from_station_date, "yyyy-MM-dd", new Date());
+    const toDate = parse(trainTicket.to_station_date, "yyyy-MM-dd", new Date());
+    const durationDay = differenceInDays(toDate, fromDate);
+    console.log(durationDay);
+    if (durationDay > 0) {
+      return <sup>+{durationDay}</sup>;
+    }
+    return <span />;
+  };
   return (
     <Box mt={1} mb={1}>
       <Card variant="outlined">
@@ -25,7 +36,8 @@ export default function TrainTicket(trainTicket: TrainTicketType) {
             <Grid item xs justifyContent="right">
               <Typography align="right">南阳</Typography>
               <Typography align="right" variant="h6">
-                11:52<sup>+1</sup>
+                11:52
+                <DurationDay />
               </Typography>
             </Grid>
           </Grid>
